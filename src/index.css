@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,4 +101,105 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Pixel Art Styles */
+.pixel-font {
+  font-family: 'Courier New', monospace;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.pixel-character {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pixel-row {
+  display: flex;
+  gap: 2px;
+}
+
+.pixel {
+  width: 12px;
+  height: 12px;
+  image-rendering: pixelated;
+}
+
+.pixel.orange {
+  background-color: #f97316;
+}
+
+.pixel.gray-200 {
+  background-color: #e5e7eb;
+}
+
+/* Pixel Letters */
+.pixel-letter-l {
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(
+    to right,
+    black 0%, black 20%,
+    transparent 20%, transparent 100%
+  ),
+  linear-gradient(
+    to top,
+    black 0%, black 20%,
+    transparent 20%, transparent 100%
+  );
+  image-rendering: pixelated;
+}
+
+.pixel-letter-a {
+  width: 60px;
+  height: 120px;
+  background: 
+    /* Top horizontal bar */
+    linear-gradient(to bottom, black 0%, black 16%, transparent 16%, transparent 100%),
+    /* Left vertical bar */
+    linear-gradient(to right, black 0%, black 20%, transparent 20%, transparent 100%),
+    /* Right vertical bar */
+    linear-gradient(to left, black 0%, black 20%, transparent 20%, transparent 100%),
+    /* Middle horizontal bar */
+    linear-gradient(to bottom, transparent 0%, transparent 45%, black 45%, black 55%, transparent 55%, transparent 100%);
+  image-rendering: pixelated;
+}
+
+.pixel-letter-b {
+  width: 60px;
+  height: 120px;
+  background: 
+    /* Left vertical bar */
+    linear-gradient(to right, black 0%, black 20%, transparent 20%, transparent 100%),
+    /* Top horizontal bar */
+    linear-gradient(to bottom, black 0%, black 16%, transparent 16%, transparent 100%),
+    /* Middle horizontal bar */
+    linear-gradient(to bottom, transparent 45%, transparent 45%, black 45%, black 55%, transparent 55%, transparent 100%),
+    /* Bottom horizontal bar */
+    linear-gradient(to top, black 0%, black 16%, transparent 16%, transparent 100%),
+    /* Top right vertical section */
+    linear-gradient(to left, black 0%, black 20%, transparent 20%, transparent 100%) 0% 0% / 100% 45%,
+    /* Bottom right vertical section */
+    linear-gradient(to left, black 0%, black 20%, transparent 20%, transparent 100%) 0% 55% / 100% 45%;
+  image-rendering: pixelated;
+}
+
+.pixel-letter-s {
+  width: 60px;
+  height: 120px;
+  background: 
+    /* Top horizontal bar */
+    linear-gradient(to bottom, black 0%, black 16%, transparent 16%, transparent 100%),
+    /* Top left vertical section */
+    linear-gradient(to right, black 0%, black 20%, transparent 20%, transparent 100%) 0% 16% / 100% 29%,
+    /* Middle horizontal bar */
+    linear-gradient(to bottom, transparent 45%, transparent 45%, black 45%, black 55%, transparent 55%, transparent 100%),
+    /* Bottom right vertical section */
+    linear-gradient(to left, black 0%, black 20%, transparent 20%, transparent 100%) 0% 55% / 100% 29%,
+    /* Bottom horizontal bar */
+    linear-gradient(to top, black 0%, black 16%, transparent 16%, transparent 100%);
+  image-rendering: pixelated;
 }
