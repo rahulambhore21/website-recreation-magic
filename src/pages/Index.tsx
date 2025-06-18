@@ -1,23 +1,91 @@
+import { useState, useEffect } from 'react';
+
 const Index = () => {
+  const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const [clickedLetters, setClickedLetters] = useState<string[]>([]);
+  const [showSpecialEffect, setShowSpecialEffect] = useState(false);
+  
+  const handleLetterClick = (letter: string) => {
+    setActiveLetter(letter);
+    
+    // Add to clicked letters array if not already there
+    if (!clickedLetters.includes(letter)) {
+      const newClickedLetters = [...clickedLetters, letter];
+      setClickedLetters(newClickedLetters);
+      
+      // Check if all letters have been clicked in the correct order
+      if (newClickedLetters.join('') === 'LABS') {
+        setShowSpecialEffect(true);
+        setTimeout(() => setShowSpecialEffect(false), 3000);
+      }
+    }
+    
+    // Clear active letter after animation
+    setTimeout(() => setActiveLetter(null), 1000);
+  };
+  
+  // Reset clicked letters if they're not in the correct order
+  useEffect(() => {
+    const correctOrderSoFar = 'LABS'.startsWith(clickedLetters.join(''));
+    if (!correctOrderSoFar) {
+      setClickedLetters([]);
+    }
+  }, [clickedLetters]);
+
   return (
-    <div className="h-screen w-screen bg-gradient-to-br from-white via-orange-50 to-white overflow-hidden">
-      <div className="h-full w-full">
+    <div className={`h-screen w-screen bg-gradient-to-br from-white via-orange-50 to-white overflow-hidden relative ${showSpecialEffect ? 'special-effect' : ''}`}>
+      {/* Special effect overlay */}
+      {showSpecialEffect && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center">
+          <div className="confetti-container">
+            {[...Array(50)].map((_, i) => (
+              <div key={i} className={`confetti confetti-${i % 5}`}></div>
+            ))}
+          </div>
+          <div className="text-6xl font-bold text-orange-500 animate-bounce pixel-font tracking-wider">
+            LABS ACTIVATED!
+          </div>
+        </div>
+      )}
+      
+      {/* Animated background particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="particle-container">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className={`particle particle-${i + 1}`} />
+          ))}
+        </div>
+      </div>
+      
+      <div className="h-full w-full relative z-10">
+        {/* Progress indicator for LABS sequence */}
+        <div className="progress-indicator">
+          {['L', 'A', 'B', 'S'].map((letter, index) => (
+            <div 
+              key={letter} 
+              className={`progress-dot ${clickedLetters.length > index && 
+                clickedLetters[index] === letter ? 'active' : ''}`}
+              title={`Click the letter ${letter}`}
+            />
+          ))}
+        </div>
+        
         {/* Main Grid Container */}
-        <div className="grid grid-cols-4 gap-0 h-full border-4 border-orange-500/50 shadow-2xl backdrop-blur-sm">
+        <div className="grid grid-cols-4 gap-0 h-full glass-container">
           {/* Top Row */}
-          <div className="border border-orange-300/30 backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
-          <div className="border border-orange-300/30 backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
-          <div className="border border-orange-300/30 backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
-          <div className="border border-orange-300/30 backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500 flex items-start justify-end p-4">
-            <button className="bg-orange-500 text-white px-8 py-3 text-sm font-bold hover:bg-orange-600 transition-all duration-300 hover:scale-105 rounded-lg shadow-lg hover:shadow-orange-300/50">
+          <div className="glass-panel hover:glass-panel-hover"></div>
+          <div className="glass-panel hover:glass-panel-hover"></div>
+          <div className="glass-panel hover:glass-panel-hover"></div>
+          <div className="glass-panel hover:glass-panel-hover flex items-start justify-end p-4">
+            <button className="neo-brutalism-button">
               GET IT
             </button>
           </div>
           
           {/* Second Row - Character and Thank You */}
-          <div className="border border-orange-300/30 backdrop-blur-sm flex items-center justify-center relative group">
+          <div className="glass-panel hover:glass-panel-hover flex items-center justify-center relative group">
             {/* Animated Pixel Art Character */}
-            <div className="pixel-character transform transition-transform duration-500 group-hover:scale-125 animate-float">
+            <div className="pixel-character transform perspective-effect group-hover:rotate-y-180">
               <div className="pixel-row">
                 <div className="pixel orange animate-glow"></div>
                 <div className="pixel orange"></div>
@@ -44,36 +112,56 @@ const Index = () => {
                 <div className="pixel orange animate-glow"></div>
               </div>
             </div>
-            {/* Corner brackets with animation */}
-            <div className="absolute top-2 left-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:rotate-12">⌜</div>
-            <div className="absolute top-2 right-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:-rotate-12">⌝</div>
-            <div className="absolute bottom-2 left-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:-rotate-12">⌞</div>
-            <div className="absolute bottom-2 right-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:rotate-12">⌟</div>
+            {/* Enhanced corner brackets */}
+            <div className="bracket-container">
+              <div className="bracket top-left"></div>
+              <div className="bracket top-right"></div>
+              <div className="bracket bottom-left"></div>
+              <div className="bracket bottom-right"></div>
+            </div>
           </div>
           
-          <div className="border border-orange-300/30 backdrop-blur-sm col-span-3 flex flex-col justify-center items-center p-8 group hover:bg-orange-50/50 transition-all duration-500">
-            <h1 className="text-5xl font-bold mb-6 text-orange-500 pixel-font tracking-wider animate-title">THANK YOU</h1>
-            <p className="text-sm text-orange-700 text-center mb-8 pixel-font leading-tight opacity-90 animate-fadeIn">
-              CREATIVE DESIGN AND DEVELOPMENT IN<br />
-              WEB DEVELOPMENT AMD DT MANAGED IT IS
-            </p>
-            <button className="bg-transparent border-2 border-orange-500 px-10 py-4 text-orange-500 font-bold pixel-font hover:bg-orange-500 hover:text-white transition-all duration-300 hover:scale-105 rounded-lg shadow-lg hover:shadow-orange-300/50">
-              BACK TO MAIN
-            </button>
+          <div className="glass-panel hover:glass-panel-hover col-span-3 flex flex-col justify-center items-center p-8 group">
+            <div className="content-wrapper animate-slide-up">
+              <h1 className="text-6xl font-bold mb-6 text-orange-500 pixel-font tracking-wider ">THANK YOU</h1>
+              <p className="text-sm text-orange-700 text-center mb-8 pixel-font leading-tight typing-animation">
+                CREATIVE DESIGN AND DEVELOPMENT IN<br />
+                WEB DEVELOPMENT AMD DT MANAGED IT IS
+              </p>
+              <button className="neo-brutalism-white-button">
+                BACK TO MAIN
+              </button>
+            </div>
           </div>
           
           {/* Bottom Row - LABS Text */}
-          <div className="border border-orange-300/30 backdrop-blur-sm flex items-center justify-center group hover:bg-orange-50/50 transition-all duration-500">
-            <div className="pixel-letter-l animate-fadeInUp"></div>
+          <div className="glass-panel hover:glass-panel-hover flex items-center justify-center group relative">
+            <div className="pixel-letter-l letter-3d"></div>
+            <span 
+              className={`labs-letter labs-delay-1 ${activeLetter === 'L' ? 'active' : ''}`}
+              onClick={() => handleLetterClick('L')}
+            >L</span>
           </div>
-          <div className="border border-orange-300/30 backdrop-blur-sm flex items-center justify-center group hover:bg-orange-50/50 transition-all duration-500">
-            <div className="pixel-letter-a animate-fadeInUp animation-delay-100"></div>
+          <div className="glass-panel hover:glass-panel-hover flex items-center justify-center group relative">
+            <div className="pixel-letter-a letter-3d"></div>
+            <span 
+              className={`labs-letter labs-delay-2 ${activeLetter === 'A' ? 'active' : ''}`}
+              onClick={() => handleLetterClick('A')}
+            >A</span>
           </div>
-          <div className="border border-orange-300/30 backdrop-blur-sm flex items-center justify-center group hover:bg-orange-50/50 transition-all duration-500">
-            <div className="pixel-letter-b animate-fadeInUp animation-delay-200"></div>
+          <div className="glass-panel hover:glass-panel-hover flex items-center justify-center group relative">
+            <div className="pixel-letter-b letter-3d"></div>
+            <span 
+              className={`labs-letter labs-delay-3 ${activeLetter === 'B' ? 'active' : ''}`}
+              onClick={() => handleLetterClick('B')}
+            >B</span>
           </div>
-          <div className="border border-orange-300/30 backdrop-blur-sm flex items-center justify-center group hover:bg-orange-50/50 transition-all duration-500">
-            <div className="pixel-letter-s animate-fadeInUp animation-delay-300"></div>
+          <div className="glass-panel hover:glass-panel-hover flex items-center justify-center group relative">
+            <div className="pixel-letter-s letter-3d"></div>
+            <span 
+              className={`labs-letter labs-delay-4 ${activeLetter === 'S' ? 'active' : ''}`}
+              onClick={() => handleLetterClick('S')}
+            >S</span>
           </div>
         </div>
       </div>
