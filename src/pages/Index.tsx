@@ -48,15 +48,6 @@ const Index = () => {
         </div>
       )}
       
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="particle-container">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className={`particle particle-${i + 1}`} />
-          ))}
-        </div>
-      </div>
-      
       <div className="h-full w-full relative z-10">
         {/* Progress indicator for LABS sequence */}
         <div className="progress-indicator">
@@ -73,10 +64,10 @@ const Index = () => {
         {/* Main Grid Container */}
         <div className="grid grid-cols-4 gap-0 h-full glass-container">
           {/* Top Row */}
-          <div className="glass-panel hover:glass-panel-hover"></div>
-          <div className="glass-panel hover:glass-panel-hover"></div>
-          <div className="glass-panel hover:glass-panel-hover"></div>
-          <div className="glass-panel hover:glass-panel-hover flex items-start justify-end p-4">
+          <div className="glass-panel hover:glass-panel-hover backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
+          <div className="glass-panel hover:glass-panel-hover backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
+          <div className="glass-panel hover:glass-panel-hover backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500"></div>
+          <div className="glass-panel hover:glass-panel-hover backdrop-blur-sm hover:bg-orange-50/50 transition-all duration-500 flex items-start justify-end p-4">
             <button className="neo-brutalism-button">
               GET IT
             </button>
@@ -84,44 +75,20 @@ const Index = () => {
           
           {/* Second Row - Character and Thank You */}
           <div className="glass-panel hover:glass-panel-hover flex items-center justify-center relative group">
-            {/* Animated Pixel Art Character */}
-            <div className="pixel-character transform perspective-effect group-hover:rotate-y-180">
-              <div className="pixel-row">
-                <div className="pixel orange animate-glow"></div>
-                <div className="pixel orange"></div>
-                <div className="pixel orange animate-glow"></div>
-              </div>
-              <div className="pixel-row">
-                <div className="pixel orange"></div>
-                <div className="pixel orange animate-pulse"></div>
-                <div className="pixel orange"></div>
-              </div>
-              <div className="pixel-row">
-                <div className="pixel orange animate-glow"></div>
-                <div className="pixel orange"></div>
-                <div className="pixel orange animate-glow"></div>
-              </div>
-              <div className="pixel-row">
-                <div className="pixel orange"></div>
-                <div className="pixel white animate-pulse"></div>
-                <div className="pixel orange"></div>
-              </div>
-              <div className="pixel-row">
-                <div className="pixel orange animate-glow"></div>
-                <div className="pixel orange"></div>
-                <div className="pixel orange animate-glow"></div>
-              </div>
-            </div>
-            {/* Enhanced corner brackets */}
-            <div className="bracket-container">
-              <div className="bracket top-left"></div>
-              <div className="bracket top-right"></div>
-              <div className="bracket bottom-left"></div>
-              <div className="bracket bottom-right"></div>
-            </div>
+            {/* Character image from public folder */}
+            <img 
+              src="/smile.png" 
+              alt="Pixel Character" 
+              className="pixel-character-img w-80 h-80 transform transition-transform duration-500 group-hover:scale-125 animate-float"
+            />
+            {/* Corner brackets with animation */}
+            <div className="absolute top-2 left-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:rotate-12">⌜</div>
+            <div className="absolute top-2 right-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:-rotate-12">⌝</div>
+            <div className="absolute bottom-2 left-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:-rotate-12">⌞</div>
+            <div className="absolute bottom-2 right-2 text-3xl font-bold text-orange-500/70 transition-all duration-500 group-hover:scale-150 group-hover:rotate-12">⌟</div>
           </div>
           
-          <div className="glass-panel hover:glass-panel-hover col-span-3 flex flex-col justify-center items-center p-8 group">
+          <div className="glass-panel hover:glass-panel-hover col-span-3 flex flex-col justify-center items-center p-8 group hover:bg-orange-50/50 transition-all duration-500">
             <div className="content-wrapper animate-slide-up">
               <h1 className="text-6xl font-bold mb-6 text-orange-500 pixel-font tracking-wider ">THANK YOU</h1>
               <p className="text-sm text-orange-700 text-center mb-8 pixel-font leading-tight typing-animation">
@@ -133,8 +100,7 @@ const Index = () => {
               </button>
             </div>
           </div>
-          
-          {/* Bottom Row - LABS Text */}
+            {/* Bottom Row - LABS Text */}
           <div className="glass-panel hover:glass-panel-hover flex items-center justify-center group relative">
             <div className="pixel-letter-l letter-3d"></div>
             <span 

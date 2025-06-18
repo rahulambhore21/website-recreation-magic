@@ -636,3 +636,25 @@
   background-color: #f97316;
   transform: scale(1.3);
 }
+
+/* Image Styles */
+.pixel-character-img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));
+}
+
+.labs-image {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.25));
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+.glass-panel:hover .labs-image {
+  filter: drop-shadow(0 0 16px rgba(249, 115, 22, 0.5));
+  transform: scale(1.15) rotate(5deg);
+}
