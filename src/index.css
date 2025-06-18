@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -105,7 +104,7 @@
 
 /* Pixel Art Styles */
 .pixel-font {
-  font-family: 'Courier New', monospace;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -115,6 +114,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.3));
 }
 
 .pixel-row {
@@ -126,17 +126,39 @@
   width: 12px;
   height: 12px;
   image-rendering: pixelated;
+  transition: all 0.3s ease;
 }
 
 .pixel.orange {
   background-color: #f97316;
+  box-shadow: 0 0 4px rgba(249, 115, 22, 0.3);
 }
 
-.pixel.gray-200 {
-  background-color: #e5e7eb;
+.pixel.white {
+  background-color: #ffffff;
+  box-shadow: 0 0 4px rgba(249, 115, 22, 0.2);
 }
 
-/* Pixel Letters */
+/* Enhanced Pixel Letters with orange theme */
+.pixel-letter-l,
+.pixel-letter-a,
+.pixel-letter-b,
+.pixel-letter-s {
+  width: 60px;
+  height: 120px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+  background-color: #f97316;
+}
+
+.pixel-letter-l:hover,
+.pixel-letter-a:hover,
+.pixel-letter-b:hover,
+.pixel-letter-s:hover {
+  filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.4));
+  transform: scale(1.1);
+}
+
 .pixel-letter-l {
   width: 60px;
   height: 120px;
