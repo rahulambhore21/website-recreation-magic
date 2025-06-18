@@ -102,19 +102,74 @@
   }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes title {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-title {
+  animation: title 0.8s ease-out forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
 /* Pixel Art Styles */
 .pixel-font {
   font-family: 'Press Start 2P', 'Courier New', monospace;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .pixel-character {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.3));
+  filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));
 }
 
 .pixel-row {
@@ -123,20 +178,20 @@
 }
 
 .pixel {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   image-rendering: pixelated;
   transition: all 0.3s ease;
 }
 
 .pixel.orange {
   background-color: #f97316;
-  box-shadow: 0 0 4px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 0 6px rgba(249, 115, 22, 0.4);
 }
 
 .pixel.white {
   background-color: #ffffff;
-  box-shadow: 0 0 4px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.3);
 }
 
 /* Enhanced Pixel Letters with orange theme */
@@ -144,19 +199,20 @@
 .pixel-letter-a,
 .pixel-letter-b,
 .pixel-letter-s {
-  width: 60px;
-  height: 120px;
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+  width: 70px;
+  height: 140px;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.25));
   background-color: #f97316;
+  opacity: 0;
 }
 
 .pixel-letter-l:hover,
 .pixel-letter-a:hover,
 .pixel-letter-b:hover,
 .pixel-letter-s:hover {
-  filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.4));
-  transform: scale(1.1);
+  filter: drop-shadow(0 0 16px rgba(249, 115, 22, 0.5));
+  transform: scale(1.15) rotate(5deg);
 }
 
 .pixel-letter-l {
